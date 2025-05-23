@@ -1,27 +1,20 @@
-def subseq(index , arr , dummy , target , result):
-    if(len(arr) == index):
+def combination_sum(index , arr , target , dummy , result ):
+    if(len(arr) <= index):
         if(sum(dummy) == target):
             result.append(dummy[:])
         return
 
-    if(sum(dummy)>target and target-sum(dummy) <=arr[index]):
-        return
-
-    if(sum(dummy)<target):
+    if(target-sum(dummy)>=arr[index]):
         dummy.append(arr[index])
-        subseq(index,arr , dummy , target , result)
+        combination_sum(index, arr, target, dummy, result)
         dummy.pop()
-    subseq(index+1, arr, dummy, target, result)
+    combination_sum(index+1, arr, target, dummy, result)
 
 
 class Solution(object):
-    def combinationSum(self, arr, target):
-        """
-        :type candidates: List[int]
-        :type target: int
-        :rtype: List[List[int]]
-        """
+    def combinationSum(self,candidates , target):
+        candidates = sorted(candidates)
+        
         result = []
-        subseq(0,arr,[],target,result )
+        combination_sum(0, candidates , target , [] , result)
         return(result)
-                
