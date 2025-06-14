@@ -1,20 +1,20 @@
-def combination_sum(index , arr , target , dummy , result ):
-    if(len(arr) <= index):
+def comb_sum(nums , dummy , res , index ,target):
+    if(index == len(nums)):
         if(sum(dummy) == target):
-            result.append(dummy[:])
+            res.append(dummy[:])
         return
-
-    if(target-sum(dummy)>=arr[index]):
-        dummy.append(arr[index])
-        combination_sum(index, arr, target, dummy, result)
+    if(sum(dummy)<=target):
+        dummy.append(nums[index])
+        comb_sum(nums, dummy, res, index,target)
         dummy.pop()
-    combination_sum(index+1, arr, target, dummy, result)
+    comb_sum(nums, dummy, res, index+1,target)
+
 
 
 class Solution(object):
     def combinationSum(self,candidates , target):
-        candidates = sorted(candidates)
-        
-        result = []
-        combination_sum(0, candidates , target , [] , result)
-        return(result)
+        res = []
+        index = 0
+        comb_sum(candidates , [],res , index, target)
+        return (res)
+                
