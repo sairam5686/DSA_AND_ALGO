@@ -1,22 +1,24 @@
-def unique_subseq(index , candidates , target , dummy , result):
-    if(sum(dummy) == target):
+def unique_comb(arr , target, index , dummy , result):
+    if (sum(dummy) == target):
         result.append(dummy[:])
         return
-
-    for i in range(index,len(candidates)):
-        if(target-sum(dummy)<candidates[i]):
-            break
-        if(index<i and candidates[i] == candidates[i-1]):
+    for i in range(index , len(arr)):
+        if (i >index and arr[i-1] == arr[i]):
             continue
-        dummy.append(candidates[i])
-        unique_subseq(i+1, candidates, target, dummy, result)
+        if((sum(dummy)+arr[i])>target):
+            break
+        dummy.append(arr[i])
+        unique_comb(arr, target, i+1, dummy, result)
         dummy.pop()
+
+
 class Solution(object):
     def combinationSum2(self, candidates, target):
         candidates = sorted(candidates)
-        result = []
-        unique_subseq(0, candidates , target,[],result)
-        return(result)
+        res = []
+        unique_comb(candidates, target , 0 , [] , res )
+        return(res)
+
         
         
                 
