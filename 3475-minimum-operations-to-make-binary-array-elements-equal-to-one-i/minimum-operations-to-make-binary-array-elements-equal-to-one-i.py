@@ -1,13 +1,13 @@
 class Solution(object):
     def minOperations(self, nums):
         low = 0
-        high = 2
+        high = 3
         counter = 0
 
-        while(high<=len(nums)-1):
+        while(high<=len(nums)):
             if( 0 == nums[low] ):
                 counter +=1
-                for i in range(low, high+1):
+                for i in range(low, high):
                     if(nums[i] == 0):
                         nums[i] = 1
                     else:
