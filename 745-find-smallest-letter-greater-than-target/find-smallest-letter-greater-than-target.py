@@ -1,10 +1,13 @@
 class Solution(object):
     def nextGreatestLetter(self, letters, target):
-        tar_ascii = ord(target)
         result = letters[0]
-        for i in range(len(letters)):
-            if(ord(letters[i])>tar_ascii):
-                result = letters[i]
-                break
+        low , high = 0 , len(letters)-1
+        while(low <=high):
+            mid = (low + high) //2
+            if(target<letters[mid]):
+                result = letters[mid]
+                high = mid - 1
+            else:
+                low = mid + 1
         return(result)
-                
+                        
