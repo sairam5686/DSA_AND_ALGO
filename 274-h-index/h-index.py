@@ -1,19 +1,15 @@
-def possible( citations ,num):
-    flag = False
-    for i in range(len(citations)):
-        if(num<=citations[i] and num<=((len(citations)-i))):
-            flag = True
-            break
-    return flag
-
 
 
 class Solution(object):
     def hIndex(self, citations):
-        citations.sort()
-        h_index =  0
-        for i in range( 0 , max(citations)+1):
-            if(possible(citations,i)):
-                h_index = i
+        counting_arr = [0]*(len(citations)+1)
+        for i in citations:
+            counting_arr[min(len(citations) , i)] +=1
+        print(counting_arr)
 
-        return(h_index)
+        h = len(citations)
+        h_index_counter = counting_arr[len(citations)]
+        while(h_index_counter < h):
+            h -= 1
+            h_index_counter +=counting_arr[h]
+        return(h)
