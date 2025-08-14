@@ -6,15 +6,16 @@ class NumArray(object):
         for i in range(len(nums)):
             A +=nums[i]
             self.prefix_sums.append(A)
-        print(self.prefix_sums )
+        print(nums , self.prefix_sums )
         
 
     def sumRange(self, left, right):
         if(left == 0 ):
             return self.prefix_sums[right]
-        
+        elif(left == right):
+            return self.nums[right]
         else:
-            return self.prefix_sums[right]- self.prefix_sums[left-1]
+            return (self.prefix_sums[right] -  self.prefix_sums[left-1])
         
 
 
