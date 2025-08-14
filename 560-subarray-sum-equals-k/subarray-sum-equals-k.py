@@ -1,15 +1,18 @@
 class Solution(object):
     def subarraySum(self, nums, k):
-        mpp = defaultdict(int)
-        mpp[0] = 1  # Base case
+        prefix_sum = defaultdict(int)
+        prefix_sum[0]= 1
+        adders  = 0
+        sums = 0
+        result = 0
+        for i in range( len(nums)):
+            adders += nums[i]
+            # if(adders == k):
+            #     result +=1
+            remaining = adders - k
+            if(remaining in prefix_sum):
+                result += prefix_sum[remaining]
+            prefix_sum[adders] +=1
 
-        preSum = 0
-        cnt = 0
-
-        for num in nums:
-            preSum += num
-            remove = preSum - k
-            cnt += mpp[remove]
-            mpp[preSum] += 1
-
-        return cnt
+        return(result)
+                        
