@@ -1,11 +1,10 @@
 class Solution(object):
     def maximum69Number (self, num):
-        three10=(0, 3, 30, 300, 3000)# tuple is faster than list
-        a, n, d=-1, num, 0
-        while n>0:
-            n, r=divmod(n, 10)
-            if r==6: 
-                a=d
-            d+=1
-        return num+three10[a+1]
-        
+        num = list(str(num))
+        for i in range(len(num)):
+            if(num[i] == '6'):
+                num[i] = '9'
+                break
+
+        num = "".join(num)
+        return(int(num))
