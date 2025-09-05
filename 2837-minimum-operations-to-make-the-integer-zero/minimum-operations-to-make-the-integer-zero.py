@@ -10,7 +10,7 @@ def set_bit(n):
 
 class Solution:
     def makeTheIntegerZero(self, num1: int, num2: int) -> int:
-        for i in range(0 ,  60 ):
+        for i in range(0 ,  37 ):
             target = num1 - i*(num2)
             if(target < i ):
                 break
