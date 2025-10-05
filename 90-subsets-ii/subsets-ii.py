@@ -1,21 +1,19 @@
+def subset(a , length ,dummy ,  result):
+    if(len(a) == length):
+        if(dummy not in result):
+            result.append(dummy)
+        return
 
-def subsets(index , arr , dummy , result):
-    if(dummy not in result):
-        result.append(dummy[:])
 
-    for i in range(index , len(arr)):
-        if(arr[i] == arr[i-1] and index<i): continue
-        dummy.append(arr[i])
-        subsets(i+1, arr, dummy, result)
-        dummy.pop()
-class Solution(object):
-    def subsetsWithDup(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-        nums = sorted(nums)
+
+    dummy.append(a[length])
+    subset(a, length+1,dummy[:] , result)
+    subset(a, length+1, dummy[:-1], result)
+
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
         result = []
-        subsets(0,nums,[],result)
+        subset(nums , 0  , [], result)
         return(result)
-            
+        
