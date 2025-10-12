@@ -1,17 +1,16 @@
-def subset(a , length ,dummy ,  result):
-    if(len(a) == length):
-        result.append(dummy)
+def subset(nums , length , dummy , result ):
+    if(length == len(nums)):
+        result.append(dummy[:])
         return
 
-
-    dummy.append(a[length])
-    subset(a, length+1,dummy[:] , result)
-    subset(a, length+1, dummy[:-1], result)
+    dummy.append(nums[length])
+    subset(nums, length+1, dummy, result)
+    dummy.pop(-1)
+    subset(nums,length+1, dummy, result)
 
 
 class Solution:
-    def subsets(self, a: List[int]) -> List[List[int]]:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
-        subset(a , 0  , [], result)
+        subset(nums , 0 , [] , result)
         return(result)
-                
