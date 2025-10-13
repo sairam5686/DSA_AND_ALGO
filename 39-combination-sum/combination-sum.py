@@ -1,19 +1,17 @@
-def comb_sum(arr,target , index , dummy , result):
-    if(index == len(arr)):
-        if(sum(dummy) == target):
+def combination_sum(nums , dummy , length ,  result ,target):
+    if(length == len(nums)):
+        if(sum(dummy) == target ):
             result.append(dummy[:])
         return
-    if(sum(dummy)+arr[index]<=target):
-        dummy.append(arr[index])
-        comb_sum(arr, target , index , dummy , result )
+
+    if(sum(dummy) + nums[length] <= target ):
+        dummy.append(nums[length])
+        combination_sum(nums, dummy, length, result, target)
         dummy.pop()
-    comb_sum(arr, target, index+1, dummy, result)
+    combination_sum(nums,dummy, length+1, result, target)
 
-
-
-class Solution(object):
-    def combinationSum(self,candidates , target):
-        res = []
-        comb_sum(candidates, target , 0 , [], res)
-        return(res)
-
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result  =  []
+        combination_sum(candidates  , [] , 0 , result , target )
+        return(result)
