@@ -1,16 +1,13 @@
-class Solution(object):
-    def searchInsert(self, arr, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: int
-        """
-        low , high = 0 ,len(arr)-1
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        low , high = 0 , len(nums)-1
         while(low <= high):
             mid = (low + high) // 2
-            if(arr[mid] >= target):
-                high = mid -1
+            if(nums[mid] == target):
+                return(mid)
+            elif(nums[mid] > target):
+                high = mid-1
             else:
-                low = mid + 1
+                low = mid +1
 
         return(low)
