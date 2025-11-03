@@ -1,28 +1,30 @@
-def no_of_bou(arr , day , flowers):
-    total_counter = 0
-    no_of_bb = 0
-    max_total_counter = 0
-    for i in arr:
-        if(day>=i):
-            total_counter +=1
+def maker(nums , flower_bb , day ):
+    flower = 0
+    bb = 0
+    for i in range(len(nums)):
+        if(day >= nums[i]):
+
+            flower +=1
+            if(flower == flower_bb ):
+
+                bb +=1
+                flower = 0
         else:
-            no_of_bb +=(total_counter//flowers)
-            total_counter = 0
+            flower = 0
 
-    no_of_bb +=(total_counter//flowers)
-    return no_of_bb
+    return bb
 
-class Solution(object):
-    def minDays(self, bloomDay, m, k):
-        low , high = 0 ,max(bloomDay)
-        result = -1
-        while(low<=high):
-            mid = (low+ high)//2
-            bouquet = no_of_bou(bloomDay , mid , k)
-            if(bouquet>=m):
-                result = mid
+class Solution:
+    def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
+  
+        solution = -1
+        low , high = 1  , max(bloomDay)
+        while(low <= high):
+            mid =(low + high )//2
+            bouquet = maker(bloomDay , k , mid )
+            if(bouquet >= m):
+                solution = mid
                 high = mid -1
             else:
-                low = mid + 1
-        return(result)
-                
+                low  = mid + 1
+        return(solution)
