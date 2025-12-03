@@ -1,16 +1,10 @@
 class Solution(object):
     def findDuplicate(self, nums):
-        low , high = 0,0
-        low2 = 0
-        while(True):
-            low = nums[low]
-            high = nums[nums[high]]
-            if(low == high):
-                break
-            
-        while(True):
-            low = nums[low]
-            low2 = nums[low2]
-            if(low ==low2):
-                break
-        return low  
+        nums.sort()
+        low, high = 0 ,1
+        while(high < len(nums)):
+            if(nums[low] == nums[high]):
+                return nums[low]
+
+            low +=1
+            high +=1  
