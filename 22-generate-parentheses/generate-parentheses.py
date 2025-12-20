@@ -1,16 +1,16 @@
-def valid_paranthesis(n ,dummy, right_paran, left_paran ,  result):
-    if((n*2) == (left_paran + right_paran)):
-        if(right_paran == left_paran):
+def Parenthesis(n , dummy , result  , left , right ):
+    if(n*2 ==( left + right )):
+        if(left == right):
             result.append(dummy)
         return
+    Parenthesis(n, dummy+'(', result, left+1, right)
+    if(right < left):
+        Parenthesis(n, dummy+')', result, left, right+1)
 
-    valid_paranthesis(n, dummy+'(', right_paran+1, left_paran, result)
-    if(right_paran > left_paran):
-        valid_paranthesis(n, dummy+')', right_paran, left_paran+1, result)
 
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        result = []
-        right_paran, left_paran = 0 , 0
-        valid_paranthesis(n ,'', right_paran, left_paran ,  result)
+        result= []
+        dummy = ""
+        Parenthesis(n , dummy , result  , 0 , 0 )
         return(result)
