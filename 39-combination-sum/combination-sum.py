@@ -1,17 +1,18 @@
-def combination_sum(nums , dummy , length ,  result ,target):
-    if(length == len(nums)):
-        if(sum(dummy) == target ):
-            result.append(dummy[:])
+def CombinationSum(nums , target , dummy , res , val ):
+    if (len(nums) == val):
+        if(sum(dummy) == target):
+            res.append(dummy[:])
         return
 
-    if(sum(dummy) + nums[length] <= target ):
-        dummy.append(nums[length])
-        combination_sum(nums, dummy, length, result, target)
+
+    if(sum(dummy)+nums[val] <= target):
+        dummy.append(nums[val])
+        CombinationSum(nums, target, dummy, res, val)
         dummy.pop()
-    combination_sum(nums,dummy, length+1, result, target)
+    CombinationSum(nums, target, dummy, res, val+1)
 
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        result  =  []
-        combination_sum(candidates  , [] , 0 , result , target )
-        return(result)
+        result = []
+        CombinationSum(candidates , target  , [] , result , 0)
+        return (result)
