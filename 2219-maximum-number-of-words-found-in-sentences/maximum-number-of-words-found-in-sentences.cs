@@ -1,15 +1,17 @@
 public class Solution {
     public int MostWordsFound(string[] sentences) {
-        int result = 0;
-			foreach (var item in sentences)
+       	int maxval = 0;
+			foreach (string iter in sentences)
 			{
-				var splitter = item.Split();
-				if (splitter.Length > result)
+				int val = iter.Split().Length;
+				if (val > maxval)
 				{
-					result = splitter.Length;
+					maxval = val;
 				}
-
 			}
-			return(result);
+			
+			return (maxval);
+
+
     }
 }
