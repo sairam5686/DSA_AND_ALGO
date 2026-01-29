@@ -7,7 +7,7 @@ class Solution:
 
 
         for i in range(len(nums)-1 , -1 , -1):
-            while(len(stack) != 0 and stack[-1] < nums[i]):
+            while(len(stack) != 0 and stack[-1] <= nums[i]):
                 stack.pop()
             if(len(stack) ==  0 ):
                 result[i] =  -1
