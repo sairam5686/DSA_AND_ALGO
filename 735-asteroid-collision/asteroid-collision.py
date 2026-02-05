@@ -21,11 +21,10 @@ class Solution:
                     else:
                         break
 
-                if(not stack and i< len(asteroids)):
+                if((not stack and i< len(asteroids)) or(i< len(asteroids) and ((stack[-1] >= 0 and asteroids[i] >= 0) or (stack[-1] < 0 and asteroids[i] < 0) or (
+                            stack[-1] < 0 and asteroids[i] >= 0)))):
                         stack.append(asteroids[i])
-                elif (i< len(asteroids) and ((stack[-1] >= 0 and asteroids[i] >= 0) or (stack[-1] < 0 and asteroids[i] < 0) or (
-                            stack[-1] < 0 and asteroids[i] >= 0))):
-                        stack.append(asteroids[i])
+                
 
             i+=1
         return stack
