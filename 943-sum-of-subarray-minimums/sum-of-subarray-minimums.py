@@ -1,30 +1,47 @@
 class Solution:
-    def sumSubarrayMins(self, arr: List[int]) -> int:
-        n = len(arr)
-        prev_element = [-1] * n
-        next_element = [n] * n
-        stack = []
-
-        # Previous Smaller Element (strictly smaller)
-        for i in range(n):
-            while stack and arr[stack[-1]] > arr[i]:
+    def sumSubarrayMins(self, nums: List[int]) -> int:
+        
+        prev_element= [-1] * len(nums)
+        next_element =[len(nums)]*len(nums)
+        stack  =[]
+        MOD = int(1e9 + 7)
+        for i in range(len(nums)):
+            while (stack and nums[stack[-1]] > nums[i] ):
                 stack.pop()
-            if stack:
+
+            if(len(stack) != 0 ):
                 prev_element[i] = stack[-1]
-            stack.append(i)
+                stack.append(i)
+            elif(len(stack) == 0 ):
+                stack.append(i)
+                continue
+            elif(nums[stack[-1]] < nums[i] ):
+                prev_element[i] = stack[-1]
+                stack.append(i)
 
         stack = []
 
-        # Next Smaller Element (smaller or equal)
-        for i in range(n - 1, -1, -1):
-            while stack and arr[stack[-1]] >= arr[i]:
+        for i in range(len(nums)-1, -1 , -1):
+            while (stack and nums[stack[-1]] >= nums[i]):
                 stack.pop()
-            if stack:
-                next_element[i] = stack[-1]
-            stack.append(i)
 
-        mod = int(1e9 + 7)
-        total = 0
-        for i in range(n):
-            total += (i - prev_element[i]) * (next_element[i] - i) * arr[i]
-        return total % mod
+            if (len(stack) != 0):
+                next_element[i] = stack[-1]
+                stack.append(i)
+            elif(len(stack) == 0):
+                stack.append(i)
+                continue
+            elif (nums[stack[-1]] < nums[i]):
+                next_element[i] = stack[-1]
+                stack.append(i)
+
+        print(prev_element , next_element)
+
+
+        total  = 0
+        for i in range(len(nums)):
+            left = (i - prev_element[i] )
+            right  = (next_element[i] - i)
+            total += (left * right)*nums[i]
+
+        return(total%MOD)
