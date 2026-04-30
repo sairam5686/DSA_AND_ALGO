@@ -1,17 +1,18 @@
-class Solution:
-    def setZeroes(self, matrix: List[List[int]]) -> None:
-        rows , cols = [] , []
-        for i in range(0, len(matrix)):
-            for j in range(0 , len(matrix[0])):
-                if(matrix[i][j] == 0):
-                    rows.append(i)
-                    cols.append(j)
+class Solution(object):
+    def setZeroes(self, matrix):
+        cols , rows = [] , []
+        for col in range(len(matrix)):
+            for row in range(len(matrix[0])):
+                if(matrix[col][row] == 0 ):
+                    cols.append(col)
+                    rows.append(row)
 
-        for row , col in zip(rows, cols):
-            for i in range(0 , len(matrix[0])):
-                matrix[row][i]  = 0
-            for j in range(0 , len(matrix)):
-                for j in range(0 , len(matrix)):
-                    matrix[j][col] = 0
-        return(matrix)
+        for i , j in zip(cols , rows):
+            for row in range(len(matrix[0])):
+                matrix[i][row] =  0
+
+            for col in range(len(matrix)):
+                matrix[col][j] = 0
+                
+        return (matrix)
                 
