@@ -1,18 +1,19 @@
-def combination(row , cols):
-    result = 1
-    for i in range(1 , cols):
-        result *=(row - i)
-        result //=i
-    return result
+def comb(row , col ):
+    res = 1
+    for i in range(1 , col):
+        res *= row - i
+        res //= i
+    return res
+
+
 
 class Solution(object):
     def generate(self, numRows):
-        result = []
+        result_nums = [ ]
         for i in range(1 , numRows+1):
-            dummy = []
-            for j in range(1 , i+1 ):
-                val = combination(i , j)
-                dummy.append(val)
-            result.append(dummy)
-        return(result)
-                
+            dumbs =  []
+            for j in range (1 , i+1):
+                val = comb( i ,  j )
+                dumbs.append(val)
+            result_nums.append(dumbs)
+        return (result_nums)
