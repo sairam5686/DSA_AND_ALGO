@@ -3,17 +3,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        val = nums.count(0)
-        arr = []
-        for i in (nums):
-            if(i != 0 ):
-                arr.append(i)
-
-        for i in range(len(arr)):
-            nums[i] = arr[i]
-
-        for i in range(len(arr) , len(nums)):
-            nums[i] = 0
+        low , high = 0 ,  0
+        while(high < len(nums)):
+            if(nums[high] != 0):
+                nums[low] , nums[high] = nums[high] , nums[low]
+                low +=1
+                high +=1
+            else:
+                high +=1
+                
         
-
-        
+                
