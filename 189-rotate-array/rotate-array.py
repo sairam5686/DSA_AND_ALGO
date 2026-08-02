@@ -1,23 +1,19 @@
-def reverser(arr , low  , high ):
-    while(low < high):
-        arr[low] , arr[high] = arr[high] , arr[low]
-        low +=1
-        high -=1
-
+def to_reverse(arr , start , end):
+    while(start < end):
+        arr[start ]  , arr[end]  = arr[end] , arr[start]
+        end -=1
+        start+=1
 
 
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        if len(nums) <=1:
-            pass
-        else: 
+        k = k % len(nums)
+        if(len(nums)>1):
+            to_reverse(nums , 0 , len(nums)-1)
+            to_reverse(nums , 0 , k-1)
+            to_reverse(nums , k  , len(nums)-1)
 
-            if(k > len(nums)):
-                k %= len(nums)
-            reverser(nums , 0 , len(nums)-1)
-            reverser(nums , 0 , k-1)
-            reverser(nums , k , len(nums)-1)
-            
+
+
+
+        
