@@ -1,11 +1,11 @@
-class Solution(object):
-    def maxProfit(self, nums):
-        stack  = [0]
-        max_profit =   0 
-        for i in range(len(nums)-1 , -1 , -1):
-            if(stack[-1] < nums[i]):
-                stack.append(nums[i])
-            else:
-                profit = stack[-1] - nums[i]
-                max_profit = max(profit  , max_profit)
-        return max_profit
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        max_element = -1
+        temp = [-1]*len(prices)
+        for i in range(len(prices)-1  , -1 , -1):
+            max_element = max(prices[i] , max_element )
+            temp[i] = max_element
+        result =  0
+        for i in range(len(prices)):
+            result = max(temp[i] - prices[i]  , result)
+        return (result)
