@@ -1,23 +1,26 @@
+def is_sorted(arr):
+    low , high = 0 , 1
+    while(high< len(arr)):
+        if(arr[low] > arr[high]):
+            return (False , high)
+        low +=1
+        high +=1
 
-def isSorted(num):
-    for i in range( 1, len(num)):
-        if( num[i-1]> num[i]):
-            return False , i
-    return True , None
+    return (True , None)
+
 
 
 class Solution:
     def check(self, nums: List[int]) -> bool:    
-        low , high =  0 , 1
-        sort_flag , rotate_flag  = False , False
-        flag , val = isSorted(nums)
-        if (flag):
-            return(True)
+        flag , val = is_sorted(nums)
+        if(flag==True):
+            return (True)
         else:
-            start ,end =nums[val:] , nums[:val]
-            start.extend(end)
-            flag,val  = isSorted(start)
-            if(flag):
-                return(True)
+            first_half  , last_half =nums[:val] , nums[val:]
+            last_half.extend(first_half)
+            res , val = is_sorted(last_half)
+            if(res == True):
+                return (True)
             else:
                 return(False)
+
