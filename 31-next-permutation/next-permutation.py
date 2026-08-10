@@ -20,3 +20,11 @@ class Solution:
 
             to_reverse(nums , peak +1 , len(nums)-1)
         # print(nums)                                                
+
+        # Space Complexity : O(1)
+        # Time Complexity : MIN : O(N)
+                            # AVG : O(2N+logN)
+                        #   MAX : O(3N)
+
+                        # Bute
+                        # O(N! * N  + NlogN + logN)
