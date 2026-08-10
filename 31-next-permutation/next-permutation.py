@@ -1,30 +1,22 @@
-def reverse(arr , start , end ):
-    while(start<=end):
-        arr[start] , arr[end] = arr[end] , arr[start]
-        start +=1
-        end -=1
-
-
-class Solution(object):
-    def nextPermutation(self, nums):
-        ind = -1
-
-        for  i in range(len(nums)-2 , -1 , -1):
+def to_reverse(arr  , low , high):
+    while(low <= high ):
+        arr[low] , arr[high] = arr[high] , arr[low]
+        low +=1
+        high -=1
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        peak = -1
+        for i in range(len(nums)-2 , -1 , -1 ):
             if(nums[i] < nums[i+1]):
-                ind = i
+                peak = i
                 break
-
-        if(ind == -1):
-            reverse(nums , 0 , len(nums)-1)
+        if(peak == -1):
+            to_reverse(nums , 0  , len(nums)-1)
         else:
-            for i in range(len(nums)-1 , ind-1 , -1):
-                if(nums[i]>nums[ind]):
-                    nums[i] ,nums[ind] = nums[ind],nums[i]
+            for i in range(len(nums)-1 , peak , -1):
+                if(nums[i] > nums[peak]):
+                    nums[i] , nums[peak] = nums[peak]  , nums[i]
                     break
 
-            reverse(nums, ind+1 ,len(nums)-1)
-
-            print(nums)
-                    
-                        
-                                
+            to_reverse(nums , peak +1 , len(nums)-1)
+        # print(nums)                                                
