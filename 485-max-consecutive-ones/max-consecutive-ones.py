@@ -4,12 +4,10 @@ class Solution:
         counter = 0
         max_counter = 0
         while(high < len(nums)):
-            if(nums[high] == 1):
-                counter +=1
-            else:
+             
+            if(nums[high] != 1):
                 low = high+1
                 counter = 0
-
             max_counter = max(high - low+1 , max_counter)
             high +=1
         return(max_counter)
