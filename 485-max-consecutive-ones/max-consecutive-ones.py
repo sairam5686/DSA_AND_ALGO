@@ -8,8 +8,8 @@ class Solution:
                 counter +=1
             else:
                 low = high+1
-                counter = 0 
+                counter = 0
 
-            max_counter = max(counter , max_counter)
+            max_counter = max(high - low+1 , max_counter)
             high +=1
         return(max_counter)
