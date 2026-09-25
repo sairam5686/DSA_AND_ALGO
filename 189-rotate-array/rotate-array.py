@@ -1,18 +1,19 @@
-def to_reverse(arr , start , end):
-    while(start < end):
-        arr[start ]  , arr[end]  = arr[end] , arr[start]
-        end -=1
-        start+=1
+def reverse_rage(arr , low , high):
+    while(low < high ):
+        arr[high] , arr[low] = arr[low] , arr[high]
+        high -=1
+        low +=1
+
 
 
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        k = k % len(nums)
-        
-        to_reverse(nums , 0 , len(nums)-1)
-        to_reverse(nums , 0 , k-1)
-        to_reverse(nums , k  , len(nums)-1)
-
+        rotation_comp = k%len(nums)
+        reverse_rage(nums , 0 , len(nums)-1)
+        reverse_rage(nums , 0 , rotation_comp-1)
+        reverse_rage(nums , rotation_comp , len(nums)-1)
+        print(nums)
+        return(nums)
 
 
 
