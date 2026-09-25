@@ -12,7 +12,6 @@ class Solution:
         reverse_rage(nums , 0 , len(nums)-1)
         reverse_rage(nums , 0 , rotation_comp-1)
         reverse_rage(nums , rotation_comp , len(nums)-1)
-        print(nums)
         return(nums)
 
 
