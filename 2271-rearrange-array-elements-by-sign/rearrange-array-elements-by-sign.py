@@ -1,28 +1,13 @@
-class Solution(object):
-    def rearrangeArray(self, nums):
-        positive , negative = [] , []
-        for i in nums:
-            if(i >= 0):
-                positive.append(i)
+class Solution:
+    def rearrangeArray(self, nums: list[int]) -> list[int]:
+        result = [0]*len(nums)
+        pos_idx = 0
+        neg_idx = 1
+        for i in range(len(nums)):
+            if(nums[i] >= 0 ):
+                result[pos_idx ] = nums[i]
+                pos_idx +=2
             else:
-                negative.append(i)
-
-      
-
-
-        res_pt , pos_pt , neg_pt = 0,0,0
-
-        while(res_pt<len(nums)):
-         
-            if(res_pt %2 == 0):
-                nums[res_pt] =positive[pos_pt]
-                res_pt +=1
-                pos_pt +=1
-            else:
-                nums[res_pt] = negative[neg_pt]
-                res_pt +=1
-                neg_pt +=1
-
-        return(nums)
-                        
-                        
+                result[neg_idx] = nums[i]
+                neg_idx +=2
+        return (result)
